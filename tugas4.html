@@ -16,13 +16,17 @@
         axios.get('https://dummyjson.com/posts/1') // method GET id 1 pada posts
         .then (res => console.log(res.data))
 
+        
+        // axios.get('https://dummyjson.com/auth/me') // method GET pada user auth needed
+        // .then (res => console.log(res.data))
+
         axios.post('https://dummyjson.com/posts/add',{ // method POST pada posts
             title : 'si kancil dan buaya',
             userId : 5
         })
         .then (res => console.log(res.data))
 
-        axios.put('https://dummyjson.com/posts/1',{ // method put pada posts
+        axios.put('https://dummyjson.com/posts/2',{ // method put pada posts
             title : 'proyek roro jonggrang',
             body : 'semua proyek yang selesai satu malam',
             userId : 5
@@ -32,10 +36,22 @@
         axios.delete('https://dummyjson.com/posts/1') // method delete pada posts
         .then (res => console.log(res.data))
 
-        axios.post('https://dummyjson.com/auth/login'),{
-            username : 'emilys',
-            password : 'emilyspass'
-        }
+        axios.post('https://dummyjson.com/auth/login',{
+                username : 'emilys',
+                password : 'emilyspass'
+            }
+        )
+        // ).then (res => console.log(res.token))
+        // .then(res => console.log(res.data))
+
+        const instance1 = axios.create({
+            baseURL : 'https://dummyjson.com/auth/me',
+            headers : {
+                'authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJlbWlseXMiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiRW1pbHkiLCJsYXN0TmFtZSI6IkpvaG5zb24iLCJnZW5kZXIiOiJmZW1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2VtaWx5cy8xMjgiLCJpYXQiOjE3MTY2MTg2MzAsImV4cCI6MTcxNjYyMjIzMH0.YmQM0LV-q87iUTdvzj9WJoQxTpqmPMofgkP96KAV3kY'
+            }
+        })
+
+        instance1.get()
         .then(res => console.log(res.data))
     </script>
 </body>
